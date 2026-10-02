@@ -1,23 +1,35 @@
-/* TOURNAMENT SETUP + SCOREBOARD */
-/* ══ TOURNAMENT ══ */
-#sTour{flex-direction:column;align-items:center;padding:22px 18px 60px;min-height:100dvh;overflow-y:auto;background:linear-gradient(170deg,#141414,#1a0f00);}
-#sTour h2{font-family:'Playfair Display',serif;font-size:26px;color:#f0c040;margin-bottom:4px;}
-#sTour .sub{margin-bottom:20px;}
-.tour-setup{width:100%;max-width:340px;}
-.tour-label{font-size:11px;color:var(--mu);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
-.tour-games-row{display:flex;gap:8px;margin-bottom:18px;}
-.tg-btn{flex:1;background:var(--sur);border:2px solid var(--bd);border-radius:12px;padding:12px 6px;text-align:center;cursor:pointer;-webkit-user-select:none;user-select:none;}
-.tg-btn.on{border-color:#f0c040;background:rgba(240,192,64,.1);}
-.tg-btn b{display:block;font-size:15px;font-weight:600;color:var(--tx);}
+/* TOURNAMENT SETUP · SCOREBOARD */
+
+#sTour h2{font-size:26px;font-weight:800;color:var(--go);text-align:center;margin-bottom:2px;letter-spacing:-.4px;}
+#sTour .sub{text-align:center;margin-bottom:18px;}
+.tour-setup{width:100%;}
+.tour-games-row{display:flex;gap:6px;margin-bottom:14px;}
+.tg-btn{
+  flex:1;min-height:52px;background:var(--sur);border-radius:var(--r);
+  padding:10px 6px;text-align:center;cursor:pointer;
+  transition:background .15s,color .15s;-webkit-user-select:none;user-select:none;
+}
+.tg-btn b{display:block;font-size:16px;font-weight:700;}
 .tg-btn small{font-size:10px;color:var(--mu);}
-/* Tournament scoreboard */
-.tour-board{width:100%;max-width:340px;background:var(--sur);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-bottom:16px;}
-.tour-board h3{font-family:'Playfair Display',serif;font-size:18px;color:#f0c040;margin-bottom:12px;text-align:center;}
-.tour-score-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);}
+.tg-btn.on{background:var(--go);color:#23231f;}
+.tg-btn.on small{color:rgba(35,35,31,.7);}
+
+/* scoreboard card */
+.tour-board{
+  width:100%;background:var(--sur);border-radius:var(--r-lg);
+  padding:14px 16px;margin-bottom:14px;
+}
+.tour-board h3{font-size:16px;font-weight:700;color:var(--go);text-align:center;margin-bottom:10px;}
+.tour-score-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--bd);}
 .tour-score-row:last-child{border-bottom:none;}
-.ts-name{font-size:14px;font-weight:600;}
-.ts-score{font-family:'Playfair Display',serif;font-size:22px;color:#f0c040;font-weight:700;}
+.ts-name{font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .ts-wld{font-size:11px;color:var(--mu);}
-.tour-game-num{font-size:12px;color:var(--mu);text-align:center;margin-bottom:12px;}
-.tour-progress{width:100%;height:6px;background:var(--sur2);border-radius:3px;margin-bottom:16px;overflow:hidden;}
-.tour-progress-fill{height:100%;background:linear-gradient(90deg,#f0c040,#b8860b);border-radius:3px;transition:width .4s;}
+.ts-score{font-size:20px;font-weight:800;color:var(--go);font-variant-numeric:tabular-nums;flex-shrink:0;}
+.tour-game-num{font-size:12px;color:var(--mu);text-align:center;margin-bottom:10px;}
+.tour-progress{width:100%;height:6px;background:var(--sur2);border-radius:3px;margin-bottom:14px;overflow:hidden;}
+.tour-progress-fill{height:100%;background:linear-gradient(90deg,var(--go),#c79b23);border-radius:3px;transition:width .4s;}
+
+@media (max-width:360px){
+  .tg-btn{padding:9px 4px;}
+  .tg-btn small{font-size:9px;}
+}

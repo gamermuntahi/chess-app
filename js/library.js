@@ -84,7 +84,7 @@ function renderLibrary(search){
     const card=document.createElement('div');card.className='player-card';
     const top=document.createElement('div');top.className='pc-top';
     top.innerHTML=`<div class="pc-av">${p.name[0].toUpperCase()}</div>
-      <div style="flex:1"><div style="display:flex;align-items:baseline;gap:8px;"><div class="pc-name">${p.name}</div><div style="font-family:'Playfair Display',serif;font-size:18px;color:#f0c040;font-weight:700;">${p.elo||300}</div></div>
+      <div style="flex:1;min-width:0"><div style="display:flex;align-items:baseline;gap:8px;"><div class="pc-name">${p.name}</div><div class="pc-elo">${p.elo||300}</div></div>
       <div class="pc-since">ELO · Since ${p.since}</div></div>`;
     card.appendChild(top);
     // 5-stat grid: Played, Wins, Losses, Draws, Win%

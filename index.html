@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <!-- VERSION: 2.0.1 | Built: 2026-04-17 -->
 <script src="js/head.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1a1a1a">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -43,12 +43,12 @@
 
 <!-- ══════════ USER SELECT ══════════ -->
 <div class="screen" id="sUserSelect">
-  <div style="width:100%;max-width:340px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
-    <h2 style="font-family:'Playfair Display',serif;font-size:24px;">👤 Profiles</h2>
+  <div class="screen-head">
+    <h2>👤 Profiles</h2>
     <div class="ib" id="userSelectNewBtn">+ New</div>
   </div>
-  <div id="userList" style="width:100%;max-width:340px;"></div>
-  <div style="font-size:12px;color:var(--mu);text-align:center;margin-top:16px;">Tap a profile to log in</div>
+  <div id="userList" class="stack"></div>
+  <div class="ver">Tap a profile to log in</div>
 </div>
 
 <!-- ══════════ BOT SETUP ══════════ -->
@@ -57,9 +57,9 @@
     <div class="back-btn" id="botBack">← Back</div>
     <h2>🤖 Play vs Bot</h2>
   </div>
-  <div style="font-size:12px;color:var(--mu);margin-bottom:18px;text-align:center;">Choose difficulty and your side</div>
+  <div class="lead">Choose difficulty and your side</div>
 
-  <div class="slbl" style="width:100%;max-width:340px;">Select Difficulty</div>
+  <div class="slbl">Select Difficulty</div>
   <div class="bot-card bot-easy" id="botEasyCard" data-diff="easy">
     <h3>🟢 Easy</h3>
     <p>Random legal moves — great for beginners and children</p>
@@ -73,15 +73,15 @@
     <p>Looks 2 moves ahead using minimax — a real challenge</p>
   </div>
 
-  <div class="slbl" style="width:100%;max-width:340px;margin-top:8px;">Play as</div>
+  <div class="slbl">Play as</div>
   <div class="bot-side">
     <div class="bot-side-btn sel" id="botSideW" data-side="w">♔ White</div>
     <div class="bot-side-btn" id="botSideB" data-side="b">♚ Black</div>
   </div>
 
-  <div style="width:100%;max-width:340px;margin-bottom:14px;">
+  <div class="name-section">
     <div class="slbl">Your Name</div>
-    <input class="name-input" id="botPlayerName" placeholder="Your name" maxlength="18" autocomplete="off" style="width:100%;background:var(--sur2);border:2px solid var(--bd);border-radius:12px;padding:12px 14px;color:var(--tx);font-size:15px;font-weight:600;outline:none;"/>
+    <input class="name-input boxed" id="botPlayerName" placeholder="Your name" maxlength="18" autocomplete="off"/>
   </div>
 
   <button class="gobtn" id="botStartBtn">🤖 Start vs Bot</button>
@@ -89,26 +89,24 @@
 
 <!-- ══════════ HOME ══════════ -->
 <div class="screen on" id="sHome">
-  <h1>♟ Chess</h1>
+  <h1><span class="knight">♟</span> Chess</h1>
   <div class="sub">2 Player · Pass &amp; Play</div>
   <div class="preview" id="prev"></div>
 
 
   <!-- Daily Puzzle Banner -->
-  <div id="dailyPuzzleBanner" style="display:none;width:100%;max-width:340px;background:linear-gradient(135deg,#1a0a2a,#2a0a1a);border:2px solid #f0c040;border-radius:14px;padding:12px 16px;margin-bottom:12px;cursor:pointer;-webkit-user-select:none;user-select:none;">
-    <div style="display:flex;align-items:center;justify-content:space-between;">
-      <div>
-        <div style="font-size:13px;font-weight:700;color:#f0c040;">🌟 Daily Puzzle</div>
-        <div style="font-size:11px;color:var(--mu);">Solve today's puzzle — earn 10 🪙</div>
-      </div>
-      <div id="dailyStatus" style="font-size:11px;font-weight:700;color:#9dc45f;"></div>
+  <div id="dailyPuzzleBanner" class="daily-banner">
+    <div>
+      <div class="daily-banner-title">🌟 Daily Puzzle</div>
+      <div class="daily-banner-sub">Solve today's puzzle — earn 10 🪙</div>
     </div>
+    <div id="dailyStatus" class="daily-status"></div>
   </div>
 
   <!-- Profile Bar -->
   <div class="profile-bar" id="profileBar">
     <div class="profile-av" id="profileAvHome"></div>
-    <div>
+    <div class="profile-meta">
       <div class="profile-name" id="profileNameHome">Player</div>
       <div class="profile-lvl" id="profileLvlHome">Level 1</div>
     </div>
@@ -116,17 +114,17 @@
   </div>
 
   <!-- Coin Balance Bar -->
-  <div id="coinBar" style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:340px;background:var(--sur);border:2px solid #f0c040;border-radius:14px;padding:10px 16px;margin-bottom:16px;">
-    <div style="display:flex;align-items:center;gap:8px;">
-      <span style="font-size:22px;">🪙</span>
+  <div id="coinBar" class="coin-bar">
+    <div class="coin-left">
+      <span class="coin-icon">🪙</span>
       <div>
-        <div style="font-family:'Playfair Display',serif;font-size:20px;color:#f0c040;font-weight:700;" id="coinDisplay">0</div>
-        <div style="font-size:10px;color:var(--mu);letter-spacing:1px;">COINS</div>
+        <div class="coin-amount" id="coinDisplay">0</div>
+        <div class="coin-label">COINS</div>
       </div>
     </div>
-    <div style="display:flex;gap:8px;">
-      <div class="ib" id="storeBtn" style="background:linear-gradient(135deg,#f0c040,#e0a000);color:#111;border:none;font-weight:700;">🛒 Store</div>
-      <div class="ib" id="questBtn" style="background:linear-gradient(135deg,#4d7fa8,#2d5f88);color:#fff;border:none;font-weight:700;">📋 Quests</div>
+    <div class="row-actions">
+      <div class="ib gold" id="storeBtn">🛒 Store</div>
+      <div class="ib blue" id="questBtn">📋 Quests</div>
     </div>
   </div>
 
@@ -134,11 +132,11 @@
   <div class="name-section">
     <div class="slbl">Player Names</div>
     <div class="name-row">
-      <div class="name-avatar" style="background:#f0f0f0;color:#111;border-radius:8px;padding:2px 7px;font-size:12px;font-weight:700;">WHITE</div>
+      <div class="tag tag-w">WHITE</div>
       <input class="name-input" id="nameW" placeholder="White player name" maxlength="18" autocomplete="off"/>
     </div>
     <div class="name-row">
-      <div class="name-avatar" style="background:#222;color:#eee;border-radius:8px;padding:2px 7px;font-size:12px;font-weight:700;">BLACK</div>
+      <div class="tag tag-b">BLACK</div>
       <input class="name-input" id="nameB" placeholder="Black player name" maxlength="18" autocomplete="off"/>
     </div>
   </div>
@@ -156,26 +154,26 @@
     <div class="tbtn" data-m="60" data-i="0"><b>60 min</b><small>Classical</small></div>
   </div>
   <div class="unlim on" id="uBtn"><b>♾ Unlimited</b><small>No time limit</small></div>
-  <div id="customTimerRow" style="display:block;width:100%;max-width:340px;background:var(--sur);border:2px solid #f0c040;border-radius:13px;padding:10px 14px;margin-top:6px;">
-    <div style="font-size:11px;color:#f0c040;font-weight:700;margin-bottom:8px;">⏱️ Custom Timer</div>
-    <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
-      <input id="customMin" type="number" min="0" max="99" value="5" style="width:52px;background:var(--sur2);border:1px solid var(--bd);border-radius:8px;padding:6px;color:var(--tx);font-size:14px;font-weight:600;text-align:center;"/>
-      <span style="color:var(--mu);font-size:11px;">min</span>
-      <input id="customSec" type="number" min="0" max="59" value="0" style="width:52px;background:var(--sur2);border:1px solid var(--bd);border-radius:8px;padding:6px;color:var(--tx);font-size:14px;font-weight:600;text-align:center;"/>
-      <span style="color:var(--mu);font-size:11px;">sec</span>
-      <span style="color:var(--mu);font-size:11px;">+</span>
-      <input id="customInc" type="number" min="0" max="60" value="0" style="width:52px;background:var(--sur2);border:1px solid var(--bd);border-radius:8px;padding:6px;color:var(--tx);font-size:14px;font-weight:600;text-align:center;"/>
-      <span style="color:var(--mu);font-size:11px;">inc</span>
-      <div class="ib" id="customTimerSet" style="background:#f0c040;color:#111;font-weight:700;border:none;">Set</div>
+  <div id="customTimerRow" class="custom-timer on">
+    <div class="custom-timer-title">⏱️ Custom Timer</div>
+    <div class="timer-row">
+      <input id="customMin" class="ti" type="number" inputmode="numeric" min="0" max="99" value="5"/>
+      <span class="tu">min</span>
+      <input id="customSec" class="ti" type="number" inputmode="numeric" min="0" max="59" value="0"/>
+      <span class="tu">sec</span>
+      <span class="tu">+</span>
+      <input id="customInc" class="ti" type="number" inputmode="numeric" min="0" max="60" value="0"/>
+      <span class="tu">inc</span>
+      <div class="ib gold" id="customTimerSet">Set</div>
     </div>
   </div>
   <button class="gobtn" id="sBtn">▶ Start 2-Player Game</button>
-  <button class="gobtn" id="botBtn" style="background:linear-gradient(135deg,#4d7fa8,#2d5f88);margin-bottom:10px;">🤖 Play vs Bot</button>
+  <button class="gobtn alt" id="botBtn">🤖 Play vs Bot</button>
   <div class="sec-btn gold" id="tourBtn">🏆 Tournament Mode</div>
-  <div class="sec-btn" style="border-color:#7b3fa0;color:#c07de0;" id="puzzleBtn">🧩 Puzzle Mode</div>
+  <div class="sec-btn purple" id="puzzleBtn">🧩 Puzzle Mode</div>
   <div class="sec-btn" id="libBtn">📚 Player Library</div>
-  <div class="sec-btn" id="resetAllBtn" style="color:var(--re);border-color:var(--re);font-size:12px;">⚠️ Reset All Player Data</div>
-  <div style="font-size:10px;color:var(--mu);margin-top:8px;letter-spacing:1px;">v2.0.1</div>
+  <div class="sec-btn danger sm" id="resetAllBtn">⚠️ Reset All Player Data</div>
+  <div class="ver">v2.0.1</div>
 </div>
 
 <!-- ══════════ TOURNAMENT SETUP ══════════ -->
@@ -184,12 +182,12 @@
   <div class="sub">Best of series</div>
   <div class="tour-setup">
     <div class="slbl">Player Names</div>
-    <div class="name-row" style="margin-bottom:8px;background:var(--sur);border:2px solid var(--bd);border-radius:13px;padding:10px 14px;display:flex;align-items:center;gap:10px;">
-      <div style="background:#f0f0f0;color:#111;border-radius:8px;padding:2px 7px;font-size:12px;font-weight:700;">WHITE</div>
+    <div class="name-row">
+      <div class="tag tag-w">WHITE</div>
       <input class="name-input" id="tNameW" placeholder="White player name" maxlength="18" autocomplete="off"/>
     </div>
-    <div class="name-row" style="margin-bottom:18px;background:var(--sur);border:2px solid var(--bd);border-radius:13px;padding:10px 14px;display:flex;align-items:center;gap:10px;">
-      <div style="background:#222;color:#eee;border-radius:8px;padding:2px 7px;font-size:12px;font-weight:700;">BLACK</div>
+    <div class="name-row">
+      <div class="tag tag-b">BLACK</div>
       <input class="name-input" id="tNameB" placeholder="Black player name" maxlength="18" autocomplete="off"/>
     </div>
     <div class="tour-label">Number of Games</div>
@@ -204,7 +202,7 @@
       <div class="tbtn" data-m="5"  data-i="0"><b>5 min</b><small>Blitz</small></div>
       <div class="tbtn" data-m="10" data-i="0"><b>10 min</b><small>Rapid</small></div>
     </div>
-    <div class="unlim on" id="tUBtn" style="margin-bottom:14px;"><b>♾ Unlimited</b><small>No time limit</small></div>
+    <div class="unlim on" id="tUBtn"><b>♾ Unlimited</b><small>No time limit</small></div>
     <button class="gobtn" id="tStartBtn">🏆 Start Tournament</button>
     <div class="sec-btn" id="tBackBtn">← Back</div>
   </div>
@@ -225,7 +223,7 @@
   <div class="panel" id="pB">
     <div class="pinfo">
       <div class="av avb" id="avB">B</div>
-      <div><div style="display:flex;align-items:center;gap:4px;"><div class="pn" id="pnB">Player 2</div><div class="elo-pill" id="eloB">1000</div></div><div class="pl-lbl" id="plB">Black</div></div>
+      <div class="pmeta"><div class="pname-row"><div class="pn" id="pnB">Player 2</div><div class="elo-pill" id="eloB">1000</div></div><div class="pl-lbl" id="plB">Black</div></div>
     </div>
     <div class="caps-row">
       <div class="caps" id="cB"></div>
@@ -240,11 +238,11 @@
     <div class="sbar-top">
       <div><div class="st" id="stxt">White's Turn</div><div class="ss" id="ssub">Tap a piece</div></div>
       <div class="sbtns">
-        <div class="ib" id="undoBtn">↩</div>
-        <div class="ib" id="hintBtn" style="display:none;">💡</div>
-        <div class="ib" id="drawBtn">🤝</div>
-        <div class="ib" id="rsgBtn">🏳</div>
-        <div class="ib" id="mnuBtn">🏠</div>
+        <div class="ib icon" id="undoBtn">↩</div>
+        <div class="ib icon" id="hintBtn" style="display:none;">💡</div>
+        <div class="ib icon" id="drawBtn">🤝</div>
+        <div class="ib icon" id="rsgBtn">🏳</div>
+        <div class="ib icon" id="mnuBtn">🏠</div>
       </div>
     </div>
     <div class="move-strip" id="moveStrip"></div>
@@ -264,7 +262,7 @@
   <div class="panel" id="pW">
     <div class="pinfo">
       <div class="av avw" id="avW">W</div>
-      <div><div style="display:flex;align-items:center;gap:4px;"><div class="pn" id="pnW">Player 1</div><div class="elo-pill" id="eloW">1000</div></div><div class="pl-lbl" id="plW">White</div></div>
+      <div class="pmeta"><div class="pname-row"><div class="pn" id="pnW">Player 1</div><div class="elo-pill" id="eloW">1000</div></div><div class="pl-lbl" id="plW">White</div></div>
     </div>
     <div class="caps-row">
       <div class="caps" id="cW"></div>
@@ -279,7 +277,7 @@
   <div class="mb">
     <h2 id="confirmTitle">Are you sure?</h2>
     <p id="confirmMsg">This cannot be undone.</p>
-    <div class="rrow" style="margin-top:4px;">
+    <div class="rrow">
       <button class="br" id="confirmYes">Yes, Delete</button>
       <button class="bs" id="confirmNo">Cancel</button>
     </div>
@@ -304,12 +302,12 @@
 <!-- Game Over (also used for tournament game end) -->
 <div class="modal" id="goM">
   <div class="mb">
-    <div style="font-size:48px;margin-bottom:8px" id="goTr">🏆</div>
+    <div class="modal-emoji" id="goTr">🏆</div>
     <h2 id="goTi">Checkmate!</h2>
     <p id="goDe">White wins</p>
-    <div id="tourBarMid" style="display:none;margin-bottom:14px;padding:10px;background:var(--sur2);border-radius:12px;">
-      <div style="font-size:11px;color:var(--mu);margin-bottom:6px;">Tournament Score</div>
-      <div id="tourScoreMid" style="font-family:'Playfair Display',serif;font-size:22px;color:#f0c040;"></div>
+    <div id="tourBarMid" class="trophy-box">
+      <div class="modal-label">Tournament Score</div>
+      <div id="tourScoreMid" class="score-big"></div>
     </div>
     <div class="mbs">
       <button class="bp" id="rmBtn">▶ Next Game</button>
@@ -323,10 +321,10 @@
 <!-- Tournament Final Result -->
 <div class="modal" id="tourEndM">
   <div class="mb">
-    <div style="font-size:52px;margin-bottom:8px">🏆</div>
-    <h2 id="teTitle" style="color:#f0c040;">Tournament Over!</h2>
+    <div class="modal-emoji">🏆</div>
+    <h2 id="teTitle" class="gold-text">Tournament Over!</h2>
     <p id="teDesc">White wins the tournament!</p>
-    <div id="teFinalScore" style="font-family:'Playfair Display',serif;font-size:28px;color:#f0c040;margin:12px 0;"></div>
+    <div id="teFinalScore" class="final-score"></div>
     <div class="mbs">
       <button class="bp" id="teRematch">🏆 New Tournament</button>
       <button class="bs" id="teMenu">🏠 Main Menu</button>
@@ -342,9 +340,7 @@
     <div class="back-btn" id="pzlHomeBack">← Back</div>
     <h2>🧩 Puzzles</h2>
   </div>
-  <div style="font-size:13px;color:var(--mu);margin-bottom:20px;text-align:center;max-width:300px;">
-    Solve chess puzzles to sharpen your skills.<br>Complete each level to unlock the next.
-  </div>
+  <div class="lead">Solve chess puzzles to sharpen your skills.<br>Complete each level to unlock the next.</div>
   <div class="diff-grid" id="diffGrid">
     <div class="diff-card diff-easy unlocked" data-diff="easy">
       <h3>Easy</h3><div class="diff-prog" id="prog-easy">0 / 20</div>
@@ -365,15 +361,13 @@
       <h3>Extreme</h3><div class="diff-prog" id="prog-extreme">0 / 20</div>
       <div class="diff-stars">⭐⭐⭐⭐</div>
     </div>
-    <div class="diff-card diff-expert locked" data-diff="expert" style="grid-column:1/-1;max-width:160px;margin:0 auto;width:100%;">
+    <div class="diff-card diff-expert locked span2" data-diff="expert">
       <div class="lock-icon" id="lock-expert">🔒</div>
       <h3>Expert</h3><div class="diff-prog" id="prog-expert">0 / 20</div>
       <div class="diff-stars">⭐⭐⭐⭐⭐</div>
     </div>
   </div>
-  <div style="width:100%;max-width:340px;margin-top:4px;">
-    <div id="pzlResetBtn" style="text-align:center;padding:12px;border:2px solid var(--re);border-radius:13px;color:var(--re);font-size:13px;font-weight:600;cursor:pointer;-webkit-user-select:none;user-select:none;">🔄 Reset All Puzzle Progress</div>
-  </div>
+  <div class="danger-link" id="pzlResetBtn">🔄 Reset All Puzzle Progress</div>
 </div>
 
 <!-- ══ PUZZLE LEVEL SELECT ══ -->
@@ -411,13 +405,19 @@
     <div class="back-btn" id="storeBack">← Back</div>
     <h2>🛒 Store</h2>
   </div>
-  <div style="display:flex;align-items:center;gap:8px;width:100%;max-width:340px;background:var(--sur);border:2px solid #f0c040;border-radius:12px;padding:10px 14px;margin-bottom:16px;">
-    <span style="font-size:20px;">🪙</span>
-    <span style="font-family:'Playfair Display',serif;font-size:18px;color:#f0c040;font-weight:700;" id="storeCoinDisplay">0</span>
-    <span style="font-size:11px;color:var(--mu);margin-left:4px;">coins available</span>
-    <div class="ib" id="redeemBtn" style="margin-left:auto;background:var(--sur2);">🎁 Redeem</div>
+  <div class="coin-bar">
+    <div class="coin-left">
+      <span class="coin-icon">🪙</span>
+      <div>
+        <div class="coin-amount" id="storeCoinDisplay">0</div>
+        <div class="coin-label">coins available</div>
+      </div>
+    </div>
+    <div class="row-actions">
+      <div class="ib" id="redeemBtn">🎁 Redeem</div>
+    </div>
   </div>
-  <div id="storeList" style="width:100%;max-width:340px;display:flex;flex-direction:column;gap:10px;padding-bottom:40px;"></div>
+  <div id="storeList" class="v-list"></div>
 </div>
 
 <!-- ══ QUESTS ══ -->
@@ -426,8 +426,8 @@
     <div class="back-btn" id="questBack">← Back</div>
     <h2>📋 Quests</h2>
   </div>
-  <div style="font-size:12px;color:var(--mu);width:100%;max-width:340px;margin-bottom:14px;text-align:center;">Complete quests to earn 🪙 coins. Each quest can only be done once.</div>
-  <div id="questList" style="width:100%;max-width:340px;display:flex;flex-direction:column;gap:8px;padding-bottom:40px;"></div>
+  <div class="lead">Complete quests to earn 🪙 coins. Each quest can only be done once.</div>
+  <div id="questList" class="v-list"></div>
 </div>
 
 <!-- ══ REDEEM ══ -->
@@ -435,8 +435,8 @@
   <div class="mb">
     <h2>🎁 Redeem Code</h2>
     <p>Enter your code to claim free coins</p>
-    <input id="redeemInput" style="width:100%;background:var(--sur2);border:2px solid var(--bd);border-radius:10px;padding:10px 14px;color:var(--tx);font-size:15px;font-weight:600;outline:none;margin-bottom:14px;text-align:center;text-transform:uppercase;letter-spacing:2px;" placeholder="ENTER CODE" maxlength="20" autocomplete="off"/>
-    <div id="redeemMsg" style="font-size:12px;min-height:18px;margin-bottom:12px;"></div>
+    <input id="redeemInput" class="code-input" placeholder="ENTER CODE" maxlength="20" autocomplete="off"/>
+    <div id="redeemMsg" class="msg-box"></div>
     <div class="rrow">
       <button class="bp" id="redeemSubmit">Claim</button>
       <button class="bs" id="redeemClose">Cancel</button>
@@ -447,34 +447,34 @@
 <!-- ══ POST GAME ANALYSIS ══ -->
 <!-- ══ REPLAY MODAL ══ -->
 <div class="modal" id="replayModal">
-  <div class="mb" style="max-height:92vh;display:flex;flex-direction:column;padding:14px;width:100%;max-width:400px;gap:8px;">
-    <h2 style="font-family:'Playfair Display',serif;margin:0;font-size:18px;">🎬 Game Replay</h2>
-    <div style="font-size:11px;color:var(--mu);text-align:center;">Move <span id="rpMoveNum">0</span> / <span id="rpTotal">0</span></div>
-    <div id="rpMoveLabel" style="font-size:12px;color:var(--tx);text-align:center;font-weight:600;min-height:18px;"></div>
+  <div class="mb wide" style="display:flex;flex-direction:column;gap:8px;">
+    <h2>🎬 Game Replay</h2>
+    <div class="rp-label">Move <span id="rpMoveNum">0</span> / <span id="rpTotal">0</span></div>
+    <div id="rpMoveLabel" class="rp-move-label"></div>
     <div id="rpBoard"></div>
-    <div id="rpMoveList" style="display:flex;flex-wrap:wrap;gap:3px;max-height:64px;overflow-y:auto;"></div>
-    <div style="display:flex;gap:6px;">
-      <button id="rpFirst" style="flex:1;padding:8px;border-radius:10px;border:1px solid var(--bd);background:var(--sur2);color:var(--tx);font-size:15px;cursor:pointer;">⏮</button>
-      <button id="rpPrev"  style="flex:1;padding:8px;border-radius:10px;border:1px solid var(--bd);background:var(--sur2);color:var(--tx);font-size:15px;cursor:pointer;">◀</button>
-      <button id="rpPlay"  style="flex:1;padding:8px;border-radius:10px;border:1px solid var(--ac);background:rgba(119,149,86,.15);color:var(--ac);font-size:15px;cursor:pointer;">▶</button>
-      <button id="rpNext"  style="flex:1;padding:8px;border-radius:10px;border:1px solid var(--bd);background:var(--sur2);color:var(--tx);font-size:15px;cursor:pointer;">▶|</button>
-      <button id="rpLast"  style="flex:1;padding:8px;border-radius:10px;border:1px solid var(--bd);background:var(--sur2);color:var(--tx);font-size:15px;cursor:pointer;">⏭</button>
+    <div id="rpMoveList" class="rp-moves"></div>
+    <div class="rp-ctrl">
+      <button id="rpFirst" class="rp-btn">⏮</button>
+      <button id="rpPrev" class="rp-btn">◀</button>
+      <button id="rpPlay" class="rp-btn play">▶</button>
+      <button id="rpNext" class="rp-btn">▶</button>
+      <button id="rpLast" class="rp-btn">⏭</button>
     </div>
-    <button class="bs" id="rpClose" style="width:100%;">✕ Close</button>
+    <button class="bs" id="rpClose">✕ Close</button>
   </div>
 </div>
 
 <div class="modal" id="analysisModal">
-  <div class="mb" style="max-height:80vh;overflow-y:auto;">
-    <h2 style="font-family:'Playfair Display',serif;">📊 Game Analysis</h2>
-    <div id="analysisContent" style="text-align:left;width:100%;"></div>
-    <button class="bs" id="analysisClose" style="width:100%;margin-top:16px;">Close</button>
+  <div class="mb scroll align-left">
+    <h2>📊 Game Analysis</h2>
+    <div id="analysisContent"></div>
+    <button class="bs" id="analysisClose" style="margin-top:16px;">Close</button>
   </div>
 </div>
 
 <!-- ══ COOLDOWN OVERLAY ══ -->
 <div class="cooldown-overlay" id="cooldownOverlay">
-  <div style="font-size:52px">⏳</div>
+  <div class="cd-emoji">⏳</div>
   <div class="cd-title">Puzzle Cooldown</div>
   <div class="cd-sub">You viewed the answer. Wait 5 minutes before solving more puzzles:</div>
   <div class="cd-timer" id="cdTimer">5:00:00</div>
