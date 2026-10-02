@@ -1,0 +1,30 @@
+/* PLAYER LIBRARY */
+/* ══ LIBRARY ══ */
+#sLib{flex-direction:column;align-items:center;padding:22px 18px 60px;min-height:100dvh;overflow-y:auto;background:linear-gradient(170deg,#141414,#0a0a1a);}
+.lib-head{display:flex;align-items:center;gap:12px;width:100%;max-width:340px;margin-bottom:18px;}
+.back-btn{background:var(--sur);border:1px solid var(--bd);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--tx);cursor:pointer;-webkit-user-select:none;user-select:none;}
+.lib-head h2{font-family:'Playfair Display',serif;font-size:22px;color:#fff;}
+.lib-search{width:100%;max-width:340px;background:var(--sur);border:2px solid var(--bd);border-radius:13px;padding:10px 14px;color:var(--tx);font-family:'Inter',sans-serif;font-size:14px;outline:none;margin-bottom:14px;caret-color:var(--ac);}
+.lib-search::placeholder{color:var(--mu);}
+.player-card{width:100%;max-width:340px;background:var(--sur);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:10px;}
+.pc-top{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.pc-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#779556,#5a7a3a);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;flex-shrink:0;}
+.pc-name{font-size:15px;font-weight:600;}.pc-since{font-size:11px;color:var(--mu);}
+.pc-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:10px;}
+.stat-box{background:var(--sur2);border-radius:9px;padding:7px 3px;text-align:center;}
+.stat-val{font-size:14px;font-weight:700;color:var(--tx);}
+.stat-lbl{font-size:8px;color:var(--mu);text-transform:uppercase;letter-spacing:1px;}
+.stat-val.win{color:#779556;}.stat-val.loss{color:var(--re);}.stat-val.draw{color:var(--go);}
+.game-log{max-height:0;overflow:hidden;transition:max-height 0.3s ease;}
+.game-log.open{max-height:300px;overflow-y:auto;}
+.game-entry{display:flex;align-items:center;gap:6px;padding:5px 0;border-top:1px solid var(--bd);font-size:11px;}
+.ge-res{font-weight:700;padding:2px 7px;border-radius:6px;font-size:10px;flex-shrink:0;}
+.ge-res.W{background:rgba(119,149,86,.2);color:#779556;}
+.ge-res.L{background:rgba(231,76,60,.2);color:var(--re);}
+.ge-res.D{background:rgba(240,165,0,.2);color:var(--go);}
+.ge-del{background:none;border:none;color:var(--re);font-size:13px;cursor:pointer;padding:2px 5px;border-radius:5px;margin-left:auto;flex-shrink:0;}
+.card-actions{display:flex;gap:7px;margin-top:8px;}
+.ca-btn{flex:1;padding:7px;border-radius:9px;border:1px solid var(--bd);font-size:11px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;background:var(--sur2);color:var(--tx);-webkit-user-select:none;user-select:none;}
+.ca-btn.del{background:rgba(231,76,60,.12);color:var(--re);border-color:rgba(231,76,60,.3);}
+.ca-btn.tog{background:rgba(119,149,86,.1);color:var(--ac);border-color:rgba(119,149,86,.3);}
+.empty-lib{color:var(--mu);font-size:14px;margin-top:40px;text-align:center;}

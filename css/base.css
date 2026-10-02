@@ -1,0 +1,12 @@
+/* FONT IMPORT, RESET, THEME VARIABLES, SCREEN SHELL */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#1a1a1a;--sur:#242424;--sur2:#2e2e2e;--sur3:#333;
+  --ls:#f0d9b5;--ds:#779556;
+  --tx:#f0f0f0;--mu:#888;--bd:#3a3a3a;
+  --ac:#779556;--re:#e74c3c;--go:#f0a500;
+}
+html{height:100%;background:var(--bg);}
+body{min-height:100%;width:100%;font-family:'Inter',sans-serif;color:var(--tx);background:var(--bg);-webkit-tap-highlight-color:transparent;overscroll-behavior:none;}
+.screen{display:none;} .screen.on{display:flex;}
