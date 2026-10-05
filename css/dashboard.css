@@ -8,7 +8,9 @@
   position:sticky;top:0;height:100dvh;display:flex;flex-direction:column;align-items:stretch;
   gap:2px;padding:20px 12px calc(20px + var(--safe-b));
   background:#1e1d1b;border-right:1px solid #3a3835;z-index:60;
+  overflow-y:auto;overflow-x:hidden;scrollbar-width:none;
 }
+.side::-webkit-scrollbar{display:none;}
 .side-brand{
   display:flex;align-items:center;gap:11px;padding:0 8px 20px;
   text-decoration:none;color:#fff;
@@ -48,10 +50,10 @@
 .nav-t{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .nav-i:hover{background:rgba(255,255,255,.055);color:var(--tx);}
 .nav-i:active{transform:scale(.98);}
-.nav-i.on{background:rgba(129,182,76,.16);color:var(--ac);}
-.nav-i.on::before{
-  content:'';position:absolute;left:-12px;top:50%;transform:translateY(-50%);
-  width:4px;height:22px;border-radius:0 4px 4px 0;background:var(--ac);
+/* inset marker keeps the active state visible even though .side clips overflow */
+.nav-i.on{
+  background:rgba(129,182,76,.16);color:var(--ac);
+  box-shadow:inset 3px 0 0 var(--ac);
 }
 .nav-i:focus-visible,.util-i:focus-visible,.c-cta:focus-visible{
   outline:2px solid var(--ac);outline-offset:2px;
@@ -224,7 +226,6 @@
   .side{padding-left:8px;padding-right:8px;}
   .side-brand{padding-left:10px;padding-right:10px;padding-bottom:14px;}
   .nav-i{justify-content:center;padding:0;height:46px;}
-  .nav-i.on::before{left:-8px;}
 }
 @media (max-width:760px){
   .dash{grid-template-columns:minmax(0,1fr);}
@@ -243,9 +244,10 @@
   }
   .nav-i .nav-g{width:22px;height:22px;}
   .nav-i svg{width:19px;height:19px;}
-  .nav-t{font-size:9.5px;font-weight:600;letter-spacing:-.1px;text-align:center;}
-  .nav-i.on::before{display:none;}
-  .nav-i.on{background:rgba(129,182,76,.16);}
+  /* restore labels: the 900px rail rule hides .nav-t, the bar needs it back */
+  .nav-t{display:block;font-size:9.5px;font-weight:600;letter-spacing:-.1px;text-align:center;}
+  /* the rail marker becomes a top line in the bottom bar */
+  .nav-i.on{background:rgba(129,182,76,.16);box-shadow:inset 0 2px 0 var(--ac);}
   .dot{top:5px;right:calc(50% - 15px);transform:none;}
   .main{padding:22px 16px calc(96px + var(--safe-b));}
   .top{gap:14px;padding-bottom:20px;}
