@@ -20,7 +20,7 @@ var AVATAR_COLORS=[
   {bg:'#ef9a9a',fg:'#111',emoji:'🌺'},{bg:'#80cbc4',fg:'#111',emoji:'🐢'}
 ];
 
-var PROFILE_KEYS=['chessCoins','chessQuests','chessOwned','chessUsedCodes','chessP','chessLib','chessTheme','chessSkin','chessFrame','chessHomeBg'];
+var PROFILE_KEYS=['chessCoins','chessQuests','chessOwned','chessUsedCodes','chessP','chessLib','chessTheme','chessSkin','chessFrame','chessHomeBg','chessLastGame'];
 
 function getAllProfiles(){
   try{return JSON.parse(localStorage.getItem('chessProfiles')||'[]');}
@@ -133,7 +133,7 @@ function resetCurrentProfileData(){
   var user=getCurrentUser();
   if(!user)return;
   var ukey=user.username.toLowerCase();
-  var allKeys=['chessCoins','chessQuests','chessOwned','chessUsedCodes','chessP','chessLib','chessTheme','chessSkin','chessFrame','chessHomeBg'];
+  var allKeys=['chessCoins','chessQuests','chessOwned','chessUsedCodes','chessP','chessLib','chessTheme','chessSkin','chessFrame','chessHomeBg','chessLastGame'];
   allKeys.forEach(function(k){
     localStorage.removeItem(k);
     localStorage.removeItem('u_'+ukey+'_'+k);

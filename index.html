@@ -7,6 +7,10 @@
 <meta http-equiv="Expires" content="0">
 <!-- VERSION: 2.0.1 | Built: 2026-04-17 -->
 <script src="js/head.js"></script>
+<script>
+// Dashboard is the front door. Deep links (#play, #puzzles, #review...) stay in the app.
+if(!location.hash)location.replace('dashboard.html');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1a1a1a">
 <meta name="mobile-web-app-capable" content="yes">
@@ -102,6 +106,9 @@
     </div>
     <div id="dailyStatus" class="daily-status"></div>
   </div>
+
+  <!-- Dashboard Link -->
+  <a class="sec-btn" href="dashboard.html">📊 Dashboard</a>
 
   <!-- Profile Bar -->
   <div class="profile-bar" id="profileBar">
@@ -484,8 +491,8 @@
 <!-- ══ SCROLL BUTTONS ══ -->
 <button id="scrollDown">▼</button>
 <button id="scrollUp">▲</button>
-<script src="js/hint.js"></script>
 <script src="js/library.js"></script>
+<script src="js/hint.js"></script>
 <script src="js/tournament.js"></script>
 <script src="js/engine.js"></script>
 <script src="js/board.js"></script>
@@ -497,5 +504,6 @@
 <script src="js/puzzles.js"></script>
 <script src="js/wiring.js"></script>
 <script src="js/extras.js"></script>
+<script src="js/router.js"></script>
 </body>
 </html>

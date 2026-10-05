@@ -99,7 +99,7 @@ input{appearance:none;-webkit-appearance:none;}
   width:100%;min-height:var(--tap);display:flex;align-items:center;justify-content:space-between;gap:10px;
   background:var(--sur);color:var(--tx);border-radius:var(--r);
   padding:13px 14px;font-size:14px;font-weight:600;margin-bottom:8px;text-align:left;
-  transition:background .15s;
+  transition:background .15s;text-decoration:none;
 }
 .sec-btn.gold{color:var(--go);}
 .sec-btn.purple{color:var(--pu);}

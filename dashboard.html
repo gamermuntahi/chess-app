@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1e1d1b">
+<meta name="description" content="Chess dashboard — play, puzzles, lessons and game review.">
+<title>Chess · Dashboard</title>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<div class="dash">
+
+  <aside class="side">
+    <a class="side-logo" href="dashboard.html" aria-label="Chess home">♞</a>
+
+    <nav class="side-nav" aria-label="Primary">
+      <a class="nav-i" href="index.html#home" title="App home" aria-label="App home">
+        <span class="nav-g">⌂</span>
+      </a>
+      <a class="nav-i" href="index.html#play" title="Play" aria-label="Play">
+        <span class="nav-g">♞</span>
+      </a>
+      <a class="nav-i" href="index.html#puzzles" title="Puzzles" aria-label="Puzzles">
+        <span class="nav-g">♟</span>
+      </a>
+      <a class="nav-i" href="index.html#bot" title="Practice vs bot" aria-label="Practice vs bot">
+        <span class="nav-g">♗</span>
+      </a>
+      <a class="nav-i" href="index.html#review" title="Game review" aria-label="Game review">
+        <span class="nav-g">♜</span>
+      </a>
+      <a class="nav-i" href="index.html#tournament" title="Tournament" aria-label="Tournament">
+        <span class="nav-g">♛</span>
+      </a>
+    </nav>
+
+    <div class="side-foot">
+      <a class="nav-i" href="index.html#store" title="Store" aria-label="Store">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.2"></circle>
+          <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 1.56V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.87.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.33-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6h.09A1.7 1.7 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09A1.7 1.7 0 0 0 15 4.6a1.7 1.7 0 0 0 1.87-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.09A1.7 1.7 0 0 0 20.91 10H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1z"></path>
+        </svg>
+      </a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="wrap">
+
+      <header class="top">
+        <a class="prof" href="index.html#profile" title="Switch profile">
+          <div class="prof-av" id="profAv" aria-hidden="true">?</div>
+          <div class="prof-meta">
+            <div class="prof-name">
+              <span class="prof-handle" id="profName">No profile</span>
+              <svg class="vbadge" id="profBadge" viewBox="0 0 24 24" role="img" aria-label="Profile active">
+                <circle cx="12" cy="12" r="11" fill="#3f8ae0"></circle>
+                <path d="M7 12.4l3.2 3.2L17 8.9" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+            <div class="prof-sub">
+              <span class="rating" id="profRating">—</span>
+              <span class="chip" id="profLevel">Level 1</span>
+              <span class="coins" id="profCoins">0 🪙</span>
+            </div>
+          </div>
+        </a>
+
+        <div class="util">
+          <a class="util-i" href="index.html#library" title="Search players" aria-label="Search players">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="M20 20l-3.6-3.6"></path>
+            </svg>
+          </a>
+          <a class="util-i" href="index.html#quests" title="Quests" aria-label="Quests">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.7 21a2 2 0 0 1-3.4 0"></path>
+            </svg>
+            <span class="dot" id="questDot" aria-hidden="true"></span>
+          </a>
+          <a class="util-i" href="index.html#store" title="Store" aria-label="Store">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="3.2"></circle>
+              <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 1.56V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.87.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.33-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6h.09A1.7 1.7 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09A1.7 1.7 0 0 0 15 4.6a1.7 1.7 0 0 0 1.87-.33l-.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.09A1.7 1.7 0 0 0 20.91 10H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1z"></path>
+            </svg>
+          </a>
+        </div>
+      </header>
+
+      <div class="dash-note" id="dashNote" hidden>
+        <span id="dashNoteText">No profile yet — create one to unlock stats.</span>
+        <a class="dash-note-btn" href="index.html">Create profile</a>
+      </div>
+
+      <section class="cards">
+
+        <article class="card">
+          <div class="c-head">
+            <div class="c-ico ico-green" aria-hidden="true">♞</div>
+            <div class="c-copy">
+              <div class="c-title">Play</div>
+              <div class="c-stat" id="statPlay">0</div>
+              <div class="c-text" id="textPlay">2-player, vs bot or tournament</div>
+            </div>
+          </div>
+          <div class="c-vis">
+            <div class="frame"><div class="board" data-board="play"></div></div>
+            <a class="c-cta" href="index.html#play">
+              Quick match
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"></path><path d="M12.5 5.5 19 12l-6.5 6.5"></path></svg>
+            </a>
+            <div class="c-links">
+              <a href="index.html#bot">vs Bot</a>
+              <a href="index.html#tournament">Tournament</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="c-head">
+            <div class="c-ico ico-blue" aria-hidden="true">♟</div>
+            <div class="c-copy">
+              <div class="c-title">Puzzles</div>
+              <div class="c-stat" id="statPuzzles">0</div>
+              <div class="c-text" id="textPuzzles">Solved · 100 levels</div>
+            </div>
+          </div>
+          <div class="c-vis">
+            <div class="frame"><div class="board" data-board="puzzles"></div></div>
+            <a class="c-cta" href="index.html#puzzles">
+              Solve puzzles
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"></path><path d="M12.5 5.5 19 12l-6.5 6.5"></path></svg>
+            </a>
+            <div class="c-links">
+              <a href="index.html#daily" id="dailyLink">Daily puzzle +10 🪙</a>
+              <a href="index.html#lesson">Next level</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="c-head">
+            <div class="c-ico ico-gold" aria-hidden="true">♗</div>
+            <div class="c-copy">
+              <div class="c-title">Next Lesson</div>
+              <div class="c-stat" id="statLesson">—</div>
+              <div class="c-text" id="textLesson">Practice vs the Easy bot</div>
+            </div>
+          </div>
+          <div class="c-vis">
+            <div class="frame"><div class="board" data-board="lesson"></div></div>
+            <div class="meter" id="lessonMeter" hidden><span class="m-fill fill-gold" id="lessonFill" style="width:0%"></span></div>
+            <a class="c-cta" href="index.html#lesson">
+              Start lesson
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"></path><path d="M12.5 5.5 19 12l-6.5 6.5"></path></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="c-head">
+            <div class="c-ico ico-purple" aria-hidden="true">♜</div>
+            <div class="c-copy">
+              <div class="c-title">Game Review</div>
+              <div class="c-stat" id="statReview">—</div>
+              <div class="c-text" id="textReview">Play a game to unlock review</div>
+            </div>
+          </div>
+          <div class="c-vis">
+            <div class="frame"><div class="board" data-board="review"></div></div>
+            <div class="meter" id="reviewMeter" hidden><span class="m-fill fill-purple" id="reviewFill" style="width:0%"></span></div>
+            <a class="c-cta" href="index.html#review">
+              Review last game
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"></path><path d="M12.5 5.5 19 12l-6.5 6.5"></path></svg>
+            </a>
+            <div class="c-links" id="reviewLinks" hidden>
+              <a href="index.html#replay">Replay moves</a>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+    </div>
+  </main>
+
+</div>
+
+<script src="js/profile.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
