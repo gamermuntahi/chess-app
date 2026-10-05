@@ -112,7 +112,6 @@ function renderLibrary(search){
     const togBtn=document.createElement('button');togBtn.className='ca-btn tog';togBtn.textContent='📋 History';
     const fn1=()=>{log.classList.toggle('open');togBtn.textContent=log.classList.contains('open')?'▲ Hide':'📋 History';};
     togBtn.addEventListener('click',fn1);
-    togBtn.addEventListener('touchstart',e=>{e.preventDefault();fn1();},{passive:false});
 
     const resetBtn=document.createElement('button');resetBtn.className='ca-btn';resetBtn.textContent='🔄 Reset';
     const fn2=()=>{
@@ -122,7 +121,6 @@ function renderLibrary(search){
       });
     };
     resetBtn.addEventListener('click',fn2);
-    resetBtn.addEventListener('touchstart',e=>{e.preventDefault();fn2();},{passive:false});
 
     const delBtn=document.createElement('button');delBtn.className='ca-btn del';delBtn.textContent='🗑 Delete';
     const fn3=()=>{
@@ -132,7 +130,6 @@ function renderLibrary(search){
       });
     };
     delBtn.addEventListener('click',fn3);
-    delBtn.addEventListener('touchstart',e=>{e.preventDefault();fn3();},{passive:false});
 
     actions.appendChild(togBtn);actions.appendChild(resetBtn);actions.appendChild(delBtn);
     card.appendChild(actions);list.appendChild(card);
@@ -149,8 +146,8 @@ function renderLibrary(search){
   };
 }
 document.getElementById('libSearch').addEventListener('input',function(){renderLibrary(this.value);});
-function btn(id,fn){const el=document.getElementById(id);if(!el){console.warn('btn: missing element',id);return;}el.addEventListener('click',fn);el.addEventListener('touchstart',e=>{e.preventDefault();fn();},{passive:false});}
-function sbtn(id,fn){const el=document.getElementById(id);if(!el){console.warn('sbtn: element not found:',id);return;}el.addEventListener('click',fn);el.addEventListener('touchstart',e=>{e.preventDefault();fn();},{passive:false});}
+function btn(id,fn){const el=document.getElementById(id);if(!el){console.warn('btn: missing element',id);return;}el.addEventListener('click',fn);}
+function sbtn(id,fn){const el=document.getElementById(id);if(!el){console.warn('sbtn: element not found:',id);return;}el.addEventListener('click',fn);}
 
 // ── Custom confirm dialog (replaces browser confirm() blocked on Android Chrome) ──
 let _confirmCb=null;

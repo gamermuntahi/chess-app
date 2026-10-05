@@ -90,11 +90,6 @@ function tap(r,f){
   else if(p&&CC(p)===G.turn&&!(r===sr&&f===sf)){G.sel=[r,f];G.moves=legal(G.b,r,f,G.ep,G.cas);render();}
   else{G.sel=null;G.moves=[];render();}
 }
-document.getElementById('board').addEventListener('touchstart',function(e){
-  e.preventDefault();const t=e.changedTouches[0];let el=document.elementFromPoint(t.clientX,t.clientY);if(!el)return;
-  let sq=el.classList.contains('sq')?el:el.closest('[data-r]');if(!sq||sq.dataset.r===undefined)return;
-  tap(+sq.dataset.r,+sq.dataset.f);
-},{passive:false});
 document.getElementById('board').addEventListener('click',function(e){
   let sq=e.target.closest('[data-r]');if(!sq||sq.dataset.r===undefined)return;tap(+sq.dataset.r,+sq.dataset.f);
 });

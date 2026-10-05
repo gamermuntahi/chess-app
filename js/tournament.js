@@ -30,11 +30,6 @@ document.getElementById('tourTimeGrid').querySelectorAll('.tbtn').forEach(b=>{
     document.getElementById('tUBtn').classList.remove('on');
     b.classList.add('on');tourSelTime=b;
   });
-  b.addEventListener('touchstart',e=>{e.preventDefault();
-    document.getElementById('tourTimeGrid').querySelectorAll('.tbtn').forEach(x=>x.classList.remove('on'));
-    document.getElementById('tUBtn').classList.remove('on');
-    b.classList.add('on');tourSelTime=b;
-  },{passive:false});
 });
 btn('tUBtn',()=>{
   document.getElementById('tourTimeGrid').querySelectorAll('.tbtn').forEach(x=>x.classList.remove('on'));
@@ -45,7 +40,6 @@ btn('tUBtn',()=>{
 let tourTotalGames=3;
 document.querySelectorAll('.tg-btn').forEach(b=>{
   b.addEventListener('click',()=>{document.querySelectorAll('.tg-btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');tourTotalGames=+b.dataset.g;});
-  b.addEventListener('touchstart',e=>{e.preventDefault();document.querySelectorAll('.tg-btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');tourTotalGames=+b.dataset.g;},{passive:false});
 });
 
 btn('tourBtn',()=>showScreen('sTour'));

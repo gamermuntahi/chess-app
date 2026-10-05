@@ -1,5 +1,9 @@
 'use strict';
 
+// Scoped: this file loads alongside the app scripts, which already declare
+// globals such as DIFFS/DIFF_NAMES as top-level const bindings.
+(function(){
+
 var POSITIONS={
   play:[
     'rnbqkbnr',
@@ -300,7 +304,7 @@ function bindCards(s,loggedIn){
 function bindQuestDot(s){
   var dot=document.getElementById('questDot');
   if(!dot)return;
-  dot.style.display=s.questsOpen>0?'':'none';
+  dot.style.display=s.questsOpen>0?'block':'none';
 }
 
 function init(){
@@ -311,4 +315,8 @@ function init(){
   bindQuestDot(s);
 }
 
+window.dashboardRefresh=init;
+
 document.addEventListener('DOMContentLoaded',init);
+
+})();

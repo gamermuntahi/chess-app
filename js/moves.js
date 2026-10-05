@@ -99,7 +99,7 @@ function openPromo(col,sr,sf,mv){
   (col==='w'?['wQ','wR','wB','wN']:['bQ','bR','bB','bN']).forEach(pc=>{
     const d=document.createElement('div');d.className='pp';d.innerHTML=pieceSVG(pc);
     const fn=()=>{document.getElementById('promoM').classList.remove('show');execMove(pData.sr,pData.sf,pData.mv,TT(pc));pData=null;};
-    d.addEventListener('touchstart',e=>{e.preventDefault();fn();},{passive:false});d.addEventListener('click',fn);
+    d.addEventListener('click',fn);
     row.appendChild(d);
   });
   document.getElementById('promoM').classList.add('show');

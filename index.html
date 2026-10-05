@@ -7,10 +7,6 @@
 <meta http-equiv="Expires" content="0">
 <!-- VERSION: 2.0.1 | Built: 2026-04-17 -->
 <script src="js/head.js"></script>
-<script>
-// Dashboard is the front door. Deep links (#play, #puzzles, #review...) stay in the app.
-if(!location.hash)location.replace('dashboard.html');
-</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1a1a1a">
 <meta name="mobile-web-app-capable" content="yes">
@@ -18,6 +14,7 @@ if(!location.hash)location.replace('dashboard.html');
 <meta name="apple-mobile-web-app-title" content="Chess">
 <title>Chess</title>
 <link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/dashboard.css">
 <link rel="stylesheet" href="css/home.css">
 <link rel="stylesheet" href="css/library.css">
 <link rel="stylesheet" href="css/tournament.css">
@@ -26,6 +23,212 @@ if(!location.hash)location.replace('dashboard.html');
 <link rel="stylesheet" href="css/ui.css">
 </head>
 <body>
+
+<!-- ══════════ DASHBOARD ══════════ -->
+<div class="screen on" id="sDash">
+<div class="dash">
+
+  <aside class="side">
+    <a class="side-brand" href="#home">
+      <span class="side-logo" aria-hidden="true">♞</span>
+      <span class="side-word">Chess</span>
+    </a>
+
+    <nav class="side-nav" aria-label="Primary">
+      <a class="nav-i on" href="#home" data-nav="home" title="Dashboard" aria-label="Dashboard" aria-current="page">
+        <span class="nav-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 10.6 12 3.2l8.8 7.4"></path><path d="M5.6 9.4V19a1.6 1.6 0 0 0 1.6 1.6h9.6A1.6 1.6 0 0 0 18.4 19V9.4"></path><path d="M9.6 20.6v-5.4h4.8v5.4"></path></svg></span>
+        <span class="nav-t">Dashboard</span>
+      </a>
+      <a class="nav-i" href="#play" data-nav="play" title="Play" aria-label="Play">
+        <span class="nav-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.6 21.2V3.4"></path><path d="M5.6 4.6h12.2l-2.2 3.9 2.2 3.9H5.6"></path></svg></span>
+        <span class="nav-t">Play</span>
+      </a>
+      <a class="nav-i" href="#puzzles" data-nav="puzzles" title="Puzzles" aria-label="Puzzles">
+        <span class="nav-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="3.4" width="7.2" height="7.2" rx="1.9"></rect><rect x="13.4" y="3.4" width="7.2" height="7.2" rx="1.9"></rect><rect x="3.4" y="13.4" width="7.2" height="7.2" rx="1.9"></rect><rect x="13.4" y="13.4" width="7.2" height="7.2" rx="1.9"></rect></svg></span>
+        <span class="nav-t">Puzzles</span>
+      </a>
+      <a class="nav-i" href="#bot" data-nav="bot" title="Play vs Bot" aria-label="Play vs Bot">
+        <span class="nav-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.8" y="8" width="16.4" height="11.4" rx="3.2"></rect><path d="M12 4.6V8"></path><circle cx="12" cy="3.4" r="1.4"></circle><path d="M9 13v1.8M15 13v1.8"></path></svg></span>
+        <span class="nav-t">vs Bot</span>
+      </a>
+      <a class="nav-i" href="#tournament" data-nav="tournament" title="Tournament" aria-label="Tournament">
+        <span class="nav-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.8h10v5.4a5 5 0 0 1-10 0z"></path><path d="M7 5.4H4.4v1.2A3.6 3.6 0 0 0 8 10.2"></path><path d="M17 5.4h2.6v1.2a3.6 3.6 0 0 1-3.6 3.6"></path><path d="M12 14.2v3.6M8.6 20.6h6.8"></path></svg></span>
+        <span class="nav-t">Tournament</span>
+      </a>
+      <a class="nav-i" href="#review" data-nav="review" title="Game Review" aria-label="Game Review">
+        <span class="nav-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 20.4h17.2" stroke-linecap="round"></path><rect x="4.8" y="12" width="3.8" height="6.4" rx="1.2"></rect><rect x="10.1" y="6.6" width="3.8" height="11.8" rx="1.2"></rect><rect x="15.4" y="9.4" width="3.8" height="9" rx="1.2"></rect></svg></span>
+        <span class="nav-t">Game Review</span>
+      </a>
+    </nav>
+
+    <div class="side-cap">Progress</div>
+    <nav class="side-nav side-nav-2" aria-label="Progress">
+      <a class="nav-i" href="#quests" data-nav="quests" title="Quests" aria-label="Quests">
+        <span class="nav-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8.4a6 6 0 1 0-12 0c0 6.6-2.8 8.6-2.8 8.6h17.6S18 15 18 8.4"></path><path d="M13.7 20.6a2 2 0 0 1-3.4 0"></path></svg></span>
+        <span class="nav-t">Quests</span>
+        <span class="dot" id="questDot" aria-hidden="true"></span>
+      </a>
+      <a class="nav-i" href="#library" data-nav="library" title="Players" aria-label="Players">
+        <span class="nav-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9.2" cy="8" r="3.3"></circle><path d="M3.2 19.6a6 6 0 0 1 12 0"></path><path d="M16.2 5.2a3.3 3.3 0 0 1 0 5.2"></path><path d="M17.6 14.4a6 6 0 0 1 3.2 5.2"></path></svg></span>
+        <span class="nav-t">Players</span>
+      </a>
+    </nav>
+
+    <div class="side-foot">
+      <a class="nav-i" href="#store" data-nav="store" title="Store" aria-label="Store">
+        <span class="nav-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 1.56V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.87.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.33-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6h.09A1.7 1.7 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09A1.7 1.7 0 0 0 15 4.6a1.7 1.7 0 0 0 1.87-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.09A1.7 1.7 0 0 0 20.91 10H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1z"></path></svg></span>
+        <span class="nav-t">Store</span>
+      </a>
+      <a class="nav-i hide-sm" href="#profile" data-nav="profile" title="Switch profile" aria-label="Switch profile">
+        <span class="nav-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.2" r="3.6"></circle><path d="M4.6 20.4a7.4 7.4 0 0 1 14.8 0"></path></svg></span>
+        <span class="nav-t">Profile</span>
+      </a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="wrap">
+
+      <header class="top">
+        <a class="prof" href="#profile" title="Switch profile">
+          <div class="prof-av" id="profAv" aria-hidden="true">?</div>
+          <div class="prof-meta">
+            <div class="prof-name">
+              <span class="prof-handle" id="profName">No profile</span>
+              <svg class="vbadge" id="profBadge" viewBox="0 0 24 24" role="img" aria-label="Profile active">
+                <circle cx="12" cy="12" r="11" fill="#3f8ae0"></circle>
+                <path d="M7 12.4l3.2 3.2L17 8.9" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+            <div class="prof-sub">
+              <span class="rating" id="profRating">—</span>
+              <span class="chip" id="profLevel">Level 1</span>
+              <span class="coins" id="profCoins">0 🪙</span>
+            </div>
+          </div>
+        </a>
+
+        <div class="util">
+          <a class="util-i" href="#library" title="Search players" aria-label="Search players">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="M20 20l-3.6-3.6"></path>
+            </svg>
+          </a>
+          <a class="util-i" href="#quests" title="Quests" aria-label="Quests">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.7 21a2 2 0 0 1-3.4 0"></path>
+            </svg>
+          </a>
+          <a class="util-i" href="#store" title="Store" aria-label="Store">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="3.2"></circle>
+              <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 1.56V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.87.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.33-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6h.09A1.7 1.7 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09A1.7 1.7 0 0 0 15 4.6a1.7 1.7 0 0 0 1.87-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.09A1.7 1.7 0 0 0 20.91 10H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1z"></path>
+            </svg>
+          </a>
+        </div>
+      </header>
+
+      <div class="dash-note" id="dashNote" hidden>
+        <span id="dashNoteText">No profile yet — create one to unlock stats.</span>
+        <a class="dash-note-btn" href="#login">Create profile</a>
+      </div>
+
+      <section class="cards">
+
+        <article class="card">
+          <div class="c-head">
+            <div class="c-ico ico-green" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5.6 21.2V3.4"></path><path d="M5.6 4.6h12.2l-2.2 3.9 2.2 3.9H5.6"></path></svg></div>
+            <div class="c-copy">
+              <div class="c-title">Play</div>
+              <div class="c-stat" id="statPlay">0</div>
+              <div class="c-text" id="textPlay">2-player, vs bot or tournament</div>
+            </div>
+          </div>
+          <div class="c-vis">
+            <div class="frame"><div class="board" data-board="play"></div></div>
+            <a class="c-cta" href="#play">
+              Quick match
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"></path><path d="M12.5 5.5 19 12l-6.5 6.5"></path></svg>
+            </a>
+            <div class="c-links">
+              <a href="#bot">vs Bot</a>
+              <a href="#tournament">Tournament</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="c-head">
+            <div class="c-ico ico-blue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="3.4" y="3.4" width="7.2" height="7.2" rx="1.9"></rect><rect x="13.4" y="3.4" width="7.2" height="7.2" rx="1.9"></rect><rect x="3.4" y="13.4" width="7.2" height="7.2" rx="1.9"></rect><rect x="13.4" y="13.4" width="7.2" height="7.2" rx="1.9"></rect></svg></div>
+            <div class="c-copy">
+              <div class="c-title">Puzzles</div>
+              <div class="c-stat" id="statPuzzles">0</div>
+              <div class="c-text" id="textPuzzles">Solved · 100 levels</div>
+            </div>
+          </div>
+          <div class="c-vis">
+            <div class="frame"><div class="board" data-board="puzzles"></div></div>
+            <a class="c-cta" href="#puzzles">
+              Solve puzzles
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"></path><path d="M12.5 5.5 19 12l-6.5 6.5"></path></svg>
+            </a>
+            <div class="c-links">
+              <a href="#daily" id="dailyLink">Daily puzzle +10 🪙</a>
+              <a href="#lesson">Next level</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="c-head">
+            <div class="c-ico ico-gold" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.6A1.6 1.6 0 0 1 5.6 4H10a2.6 2.6 0 0 1 2 1 2.6 2.6 0 0 1 2-1h4.4A1.6 1.6 0 0 1 20 5.6v10.8a1.6 1.6 0 0 1-1.6 1.6H14a2.6 2.6 0 0 0-2 1 2.6 2.6 0 0 0-2-1H5.6A1.6 1.6 0 0 1 4 16.4z"></path><path d="M12 5.8v13"></path></svg></div>
+            <div class="c-copy">
+              <div class="c-title">Next Lesson</div>
+              <div class="c-stat" id="statLesson">—</div>
+              <div class="c-text" id="textLesson">Practice vs the Easy bot</div>
+            </div>
+          </div>
+          <div class="c-vis">
+            <div class="frame"><div class="board" data-board="lesson"></div></div>
+            <div class="meter" id="lessonMeter" hidden><span class="m-fill fill-gold" id="lessonFill" style="width:0%"></span></div>
+            <a class="c-cta" href="#lesson">
+              Start lesson
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"></path><path d="M12.5 5.5 19 12l-6.5 6.5"></path></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="c-head">
+            <div class="c-ico ico-purple" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3.4 20.4h17.2" stroke-linecap="round"></path><rect x="4.8" y="12" width="3.8" height="6.4" rx="1.2"></rect><rect x="10.1" y="6.6" width="3.8" height="11.8" rx="1.2"></rect><rect x="15.4" y="9.4" width="3.8" height="9" rx="1.2"></rect></svg></div>
+            <div class="c-copy">
+              <div class="c-title">Game Review</div>
+              <div class="c-stat" id="statReview">—</div>
+              <div class="c-text" id="textReview">Play a game to unlock review</div>
+            </div>
+          </div>
+          <div class="c-vis">
+            <div class="frame"><div class="board" data-board="review"></div></div>
+            <div class="meter" id="reviewMeter" hidden><span class="m-fill fill-purple" id="reviewFill" style="width:0%"></span></div>
+            <a class="c-cta" href="#review">
+              Review last game
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"></path><path d="M12.5 5.5 19 12l-6.5 6.5"></path></svg>
+            </a>
+            <div class="c-links" id="reviewLinks" hidden>
+              <a href="#replay">Replay moves</a>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+    </div>
+  </main>
+
+</div>
+</div>
 
 <!-- ══════════ LOGIN ══════════ -->
 <div class="screen" id="sLogin">
@@ -92,7 +295,7 @@ if(!location.hash)location.replace('dashboard.html');
 </div>
 
 <!-- ══════════ HOME ══════════ -->
-<div class="screen on" id="sHome">
+<div class="screen" id="sHome">
   <h1><span class="knight">♟</span> Chess</h1>
   <div class="sub">2 Player · Pass &amp; Play</div>
   <div class="preview" id="prev"></div>
@@ -108,7 +311,7 @@ if(!location.hash)location.replace('dashboard.html');
   </div>
 
   <!-- Dashboard Link -->
-  <a class="sec-btn" href="dashboard.html">📊 Dashboard</a>
+  <a class="sec-btn" href="#home">📊 Dashboard</a>
 
   <!-- Profile Bar -->
   <div class="profile-bar" id="profileBar">
@@ -504,6 +707,7 @@ if(!location.hash)location.replace('dashboard.html');
 <script src="js/puzzles.js"></script>
 <script src="js/wiring.js"></script>
 <script src="js/extras.js"></script>
+<script src="js/dashboard.js"></script>
 <script src="js/router.js"></script>
 </body>
 </html>

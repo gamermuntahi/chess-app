@@ -174,7 +174,7 @@ function pickT(b){
   document.getElementById('uBtn').classList.remove('on');
   if(b){b.classList.add('on');selT=b;}else{document.getElementById('uBtn').classList.add('on');selT=null;}
 }
-document.querySelectorAll('#sHome .tbtn').forEach(b=>{b.addEventListener('click',()=>pickT(b));b.addEventListener('touchstart',e=>{e.preventDefault();pickT(b);},{passive:false});});
+document.querySelectorAll('#sHome .tbtn').forEach(b=>{b.addEventListener('click',()=>pickT(b));});
 btn('uBtn',()=>pickT(null));
 
 btn('sBtn',()=>{

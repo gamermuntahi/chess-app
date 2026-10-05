@@ -228,7 +228,6 @@ function openLevelSelect(diff){
     if(!isLocked){
       const idx=i;
       b.addEventListener('click',()=>startPuzzle(diff,idx));
-      b.addEventListener('touchstart',e=>{e.preventDefault();startPuzzle(diff,idx);},{passive:false});
     }
     grid.appendChild(b);
   }
@@ -273,7 +272,6 @@ function renderPuzzleBoard(){
       }
       if(f===7){const l=document.createElement('div');l.style.cssText='position:absolute;bottom:1px;right:2px;font-size:8px;font-weight:700;opacity:.6;pointer-events:none;z-index:3;';l.textContent=R[r];sq.appendChild(l);}
       if(r===7){const l=document.createElement('div');l.style.cssText='position:absolute;bottom:1px;left:2px;font-size:8px;font-weight:700;opacity:.6;pointer-events:none;z-index:3;';l.textContent=F[f];sq.appendChild(l);}
-      sq.addEventListener('touchstart',e=>{e.preventDefault();pzlTap(r,f);},{passive:false});
       sq.addEventListener('click',()=>pzlTap(r,f));
       bEl.appendChild(sq);
     }
@@ -436,4 +434,3 @@ btn('pzlRetryBtn',()=>{if(!hasCooldown(PZ.diff))resetPuzzle();else showCooldown(
 btn('pzlExitBtn',()=>openLevelSelect(PZ.diff));
 btn('cdBackBtn',()=>{document.getElementById('cooldownOverlay').classList.remove('show');if(cdInterval)clearInterval(cdInterval);showScreen('sHome');});
 document.getElementById('diffGrid').addEventListener('click',e=>{const card=e.target.closest('.diff-card');if(!card)return;openLevelSelect(card.dataset.diff);});
-document.getElementById('diffGrid').addEventListener('touchstart',e=>{const card=e.target.closest('.diff-card');if(!card)return;e.preventDefault();openLevelSelect(card.dataset.diff);},{passive:false});

@@ -54,6 +54,11 @@ body{
   overscroll-behavior:none;
 }
 button,input,select{font:inherit;color:inherit;}
+/* Interactive taps stay instant (no 300ms delay / double-tap zoom) while the
+   browser keeps ownership of pan gestures so finger-drag scrolling works. */
+button,input,select,textarea,a,[role=button],.tbtn,.gobtn,.ca-btn,.si-btn,.uc-del,.av-opt,.user-card,.diff-card{
+  touch-action:manipulation;
+}
 button{cursor:pointer;border:none;background:none;}
 input{appearance:none;-webkit-appearance:none;}
 

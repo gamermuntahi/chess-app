@@ -282,7 +282,6 @@ function _buildStoreDOM(list){
 
   // Single permanent event listener — never re-added
   list.addEventListener('click',_storeHandleTap);
-  list.addEventListener('touchstart',_storeHandleTap,{passive:false});
 }
 
 function _updateStoreButtons(){
@@ -363,7 +362,6 @@ function _updateStoreButtons(){
 function _storeHandleTap(e){
   const btn=e.target.closest('[data-action]');
   if(!btn||!btn.dataset.action)return;
-  if(e.type==='touchstart')e.preventDefault();
   const id=btn.dataset.id;
   const type=btn.dataset.type;
   const action=btn.dataset.action;

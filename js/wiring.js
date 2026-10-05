@@ -72,12 +72,6 @@ function buildAvatarGrid(){
       document.querySelectorAll('.av-opt').forEach(function(x){x.classList.remove('sel');});
       d.classList.add('sel');
     });
-    d.addEventListener('touchstart',function(e){
-      e.preventDefault();
-      selectedAvatarIdx=i;
-      document.querySelectorAll('.av-opt').forEach(function(x){x.classList.remove('sel');});
-      d.classList.add('sel');
-    },{passive:false});
     grid.appendChild(d);
   });
 }
@@ -134,16 +128,9 @@ function showUserSelect(){
         deleteProfile(p.username);showUserSelect();
       });
     });
-    del.addEventListener('touchstart',function(e){
-      e.stopPropagation();e.preventDefault();
-      showConfirm('Delete Profile?','Delete "'+p.username+'"? All their data will be lost.','Delete',function(){
-        deleteProfile(p.username);showUserSelect();
-      });
-    },{passive:false});
     card.appendChild(avDiv);card.appendChild(info);card.appendChild(del);
     function doLogin(){saveCurrentProfileData();loginUser(p);}
     card.addEventListener('click',doLogin);
-    card.addEventListener('touchstart',function(e){e.preventDefault();doLogin();},{passive:false});
     list.appendChild(card);
   });
 }
@@ -186,14 +173,12 @@ function updateDailyBanner(){
 (function(){
   var el=document.getElementById('dailyPuzzleBanner');
   if(!el)return;
-  function doDaily(e){
-    if(e.type==='touchstart')e.preventDefault();
-    if(isDailyDone()){showStoreMsg('Come back tomorrow for a new puzzle!');return;}
-    var idx=getDailyPuzzleIndex();
-    startPuzzle('easy',idx,true); // isDaily=true — won't touch normal progress
-  }
-  el.addEventListener('click',doDaily);
-  el.addEventListener('touchstart',doDaily,{passive:false});
+function doDaily(){
+      if(isDailyDone()){showStoreMsg('Come back tomorrow for a new puzzle!');return;}
+      var idx=getDailyPuzzleIndex();
+      startPuzzle('easy',idx,true); // isDaily=true — won't touch normal progress
+    }
+    el.addEventListener('click',doDaily);
 })();
 
 // ── STARTUP: check if logged in ──
@@ -202,7 +187,7 @@ function updateDailyBanner(){
   buildAvatarGrid();
   var user=getCurrentUser();
   if(user){
-    // Already logged in — load their data and go to home
+    // Already logged in — load their data; the router decides which screen opens
     loadProfileData(user.username);
     applyTheme(loadActiveTheme());
     applyHomeBg(loadHomeBg());
@@ -210,11 +195,10 @@ function updateDailyBanner(){
     checkQuestProgress();
     updateProfileBar();
     updateCustomTimerVisibility();
-    showScreen('sHome');
-  } else {
-    // First time — show login
-    showScreen('sLogin');
   }
+  // The dashboard is the front door for everyone, logged in or not.
+  // It shows a "Create profile" prompt when there is no active profile.
+  showScreen('sDash');
   updateDailyBanner();
   // Save profile data when user leaves the page
   window.addEventListener('beforeunload',function(){try{saveCurrentProfileData();}catch(e){}});

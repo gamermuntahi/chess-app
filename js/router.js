@@ -1,5 +1,5 @@
 // HASH ROUTER + LAST GAME PERSISTENCE
-// Lets dashboard.html deep-link into any screen: index.html#puzzles, #tournament, ...
+// Deep links (#play, #puzzles, #review...) switch screens in place, no reloads.
 (function(){
 
 var LAST_GAME_KEY='chessLastGame';
@@ -50,9 +50,27 @@ function restoreLastGame(){
 // ══════════════════════════════════════════
 //  ROUTE TARGETS
 // ══════════════════════════════════════════
-function goHome(){showScreen('sHome');}
+function markNav(name){
+  var items=document.querySelectorAll('#sDash [data-nav]');
+  for(var i=0;i<items.length;i++){
+    var it=items[i];
+    var hit=(it.getAttribute('data-nav')===name);
+    it.classList.toggle('on',hit);
+    if(hit)it.setAttribute('aria-current','page');
+    else it.removeAttribute('aria-current');
+  }
+}
+
+function goDashboard(){
+  showScreen('sDash');
+  markNav('home');
+  try{if(typeof dashboardRefresh==='function')dashboardRefresh();}catch(e){}
+}
+
+function goHome(){showScreen('sHome');markNav('play');}
 
 function goStore(){
+  markNav('store');
   try{
     if(typeof _storeBuilt!=='undefined')_storeBuilt=false;
     if(typeof renderStore==='function')renderStore();
@@ -60,10 +78,11 @@ function goStore(){
     showScreen('sStore');
     var skin=localStorage.getItem('chessSkin')||'skin_classic';
     if(typeof _showSkinPreview==='function')setTimeout(function(){_showSkinPreview(skin);},60);
-  }catch(e){showScreen('sHome');}
+  }catch(e){goDashboard();}
 }
 
 function goQuests(){
+  markNav('quests');
   try{
     if(typeof checkQuestProgress==='function')checkQuestProgress();
     if(typeof renderQuests==='function')renderQuests();
@@ -72,6 +91,7 @@ function goQuests(){
 }
 
 function goLibrary(){
+  markNav('library');
   try{if(typeof renderLibrary==='function')renderLibrary('');}
   catch(e){
     var list=document.getElementById('libList');
@@ -81,6 +101,7 @@ function goLibrary(){
 }
 
 function goProfile(){
+  markNav('profile');
   if(typeof showUserSelect==='function')showUserSelect();
   showScreen('sUserSelect');
 }
@@ -131,40 +152,63 @@ var ROUTES={
     if(typeof buildAvatarGrid==='function')buildAvatarGrid();
     showScreen('sLogin');
   },
-  home:goHome,
+  home:goDashboard,
+  dash:goDashboard,
+  dashboard:goDashboard,
   play:goHome,
-  bot:function(){showScreen('sBot');},
-  tournament:function(){showScreen('sTour');},
-  puzzles:function(){openPuzzleHome();},
-  lesson:goLesson,
-  daily:goDaily,
+  bot:function(){showScreen('sBot');markNav('bot');},
+  tournament:function(){showScreen('sTour');markNav('tournament');},
+  puzzles:function(){openPuzzleHome();markNav('puzzles');},
+  lesson:function(){goLesson();markNav('puzzles');},
+  daily:function(){goDaily();markNav('puzzles');},
   library:goLibrary,
   store:goStore,
   quests:goQuests,
   profile:goProfile,
-  review:function(){goReview('analysis');},
-  replay:function(){goReview('replay');}
+  review:function(){goReview('analysis');markNav('review');},
+  replay:function(){goReview('replay');markNav('review');}
 };
+
+// Which sidebar entry lights up for a given route name
+var NAV_FOR={play:'play',bot:'bot',tournament:'tournament',puzzles:'puzzles',
+             lesson:'puzzles',daily:'puzzles',library:'library',store:'store',
+             quests:'quests',profile:'profile',review:'review',replay:'review'};
 
 // ══════════════════════════════════════════
 //  DISPATCH
 // ══════════════════════════════════════════
-function applyRoute(){
-  var raw=(location.hash||'').replace(/^#/,'').toLowerCase();
-  if(!raw||raw==='dashboard')return;
-  var name=raw.split('&')[0];
-  var fn=ROUTES[name];
-  if(!fn)return;
-  if(name==='profile'&&!getCurrentUser()){
-    pendingRoute=null;
-    ROUTES.login();
-    return;
-  }
-  if(!getCurrentUser()){pendingRoute=name;return;}
-  try{fn();}catch(e){goHome();}
+function resetScroll(){
   var el=document.querySelector('.screen.on');
   if(el)el.scrollTop=0;
   window.scrollTo(0,0);
+}
+
+function applyRoute(){
+  var raw=(location.hash||'').replace(/^#/,'').toLowerCase();
+  var name=raw.split('&')[0];
+
+  // The dashboard is the front door: no hash, #home and #dashboard all land there.
+  if(!raw||name==='home'||name==='dash'||name==='dashboard'){
+    pendingRoute=null;
+    goDashboard();
+    resetScroll();
+    return;
+  }
+
+  var fn=ROUTES[name];
+  if(!fn){goDashboard();resetScroll();return;}
+
+  // The login screen is a destination, not something to resume after login.
+  if(name==='login'){pendingRoute=null;fn();return;}
+
+  if(!getCurrentUser()){
+    pendingRoute=name;
+    ROUTES.login();
+    return;
+  }
+  try{fn();}catch(e){goDashboard();}
+  markNav(NAV_FOR[name]||'');
+  resetScroll();
 }
 
 window.addEventListener('hashchange',applyRoute);
@@ -172,16 +216,14 @@ window.addEventListener('hashchange',applyRoute);
 // Re-apply the pending route once the player logs in
 var _loginUser=loginUser;
 loginUser=function(profile){
-  var backToDash=loginThenDashboard;
   loginThenDashboard=false;
   _loginUser(profile);
-  if(backToDash){location.replace('dashboard.html');return;}
-  if(pendingRoute){
-    var r=pendingRoute;
-    pendingRoute=null;
-    if((location.hash||'').replace(/^#/,'').toLowerCase()!==r)location.hash='#'+r;
-    applyRoute();
-  }
+  // Resume where the player was headed; the dashboard is the default landing.
+  var target=pendingRoute;
+  pendingRoute=null;
+  if(!target||target==='login'||target==='home')target='home';
+  if((location.hash||'').replace(/^#/,'').toLowerCase()!==target)location.hash='#'+target;
+  else applyRoute();
 };
 
 // Persist every finished game so the dashboard can review it later

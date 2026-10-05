@@ -306,19 +306,17 @@ document.addEventListener('DOMContentLoaded',function(){
 
   var amount=Math.round(window.innerHeight*0.6);
 
-  downBtn.addEventListener('click',function(){
-    window.scrollBy({top:amount,behavior:'smooth'});
-  });
-  downBtn.addEventListener('touchstart',function(e){
-    e.preventDefault();
-    window.scrollBy({top:amount,behavior:'smooth'});
-  },{passive:false});
+  // Screens scroll themselves; fall back to the document when nothing overflows.
+  function scroller(){
+    var on=document.querySelector('.screen.on');
+    if(on&&on.scrollHeight>on.clientHeight+4)return on;
+    return document.scrollingElement||document.documentElement;
+  }
+  function go(dir){
+    var t=scroller();
+    t.scrollBy({top:dir*amount,behavior:'smooth'});
+  }
 
-  upBtn.addEventListener('click',function(){
-    window.scrollBy({top:-amount,behavior:'smooth'});
-  });
-  upBtn.addEventListener('touchstart',function(e){
-    e.preventDefault();
-    window.scrollBy({top:-amount,behavior:'smooth'});
-  },{passive:false});
+  downBtn.addEventListener('click',function(){go(1);});
+  upBtn.addEventListener('click',function(){go(-1);});
 });
